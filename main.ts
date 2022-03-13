@@ -1,4 +1,4 @@
-function goLeft () {
+function goLeft() {
     pins.analogWritePin(AnalogPin.P16, 1023 * 4.0 / 20)
     pins.analogWritePin(AnalogPin.P8, 1023 * 2.0 / 20)
     pause(1000)
@@ -24,13 +24,13 @@ function back() {
     stop()
 }
 
-function stop(){
+function stop() {
     pins.analogWritePin(AnalogPin.P16, 0)
     pins.analogWritePin(AnalogPin.P8, 0)
 }
 radio.onReceivedString(function (receivedString) {
-   
-    
+
+
     switch (receivedString) {
         case "0":
             basic.showArrow(ArrowNames.West)
@@ -50,11 +50,21 @@ radio.onReceivedString(function (receivedString) {
             break
     }
 
-    
+
 })
 radio.setGroup(1)
 pins.analogSetPeriod(AnalogPin.P8, 20)
 pins.analogSetPeriod(AnalogPin.P16, 20)
-basic.forever(function () {
 
+basic.forever(function () {
+    let distance = sonar.ping(
+    DigitalPin.P0,
+    DigitalPin.P1,
+    PingUnit.Centimeters
+    )
+    basic.showNumber(distance)
+    pause(1000)
+    if (distance < 5) {
+        back()
+    }
 })

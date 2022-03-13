@@ -4,7 +4,8 @@
     "dependencies": {
         "core": "*",
         "radio": "*",
-        "microphone": "*"
+        "microphone": "*",
+        "pxt-sonar": "github:Microsoft/pxt-sonar#v0.0.5"
     },
     "files": [
         "main.blocks",
@@ -16,7 +17,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "4.0.17",
+        "target": "4.0.18",
         "targetId": "microbit"
     },
     "supportedTargets": [
